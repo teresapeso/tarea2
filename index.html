@@ -118,11 +118,12 @@
             box-shadow: 0 8px 24px var(--color-shadow);
             transition: var(--transition);
             border: 1px solid var(--color-border);
+            animation: fadeInScale 0.8s ease-out;
         }
 
         .module-header:hover {
-            box-shadow: 0 12px 32px var(--color-shadow);
-            transform: translateY(-4px);
+            box-shadow: 0 16px 40px var(--color-shadow);
+            transform: translateY(-8px);
         }
 
         .module-image-container {
@@ -137,6 +138,7 @@
             color: rgba(255, 255, 255, 0.8);
             position: relative;
             overflow: hidden;
+            animation: pulse 3s ease-in-out infinite;
         }
 
         .module-image-container::before {
@@ -482,6 +484,277 @@
             color: var(--color-primary-dark);
         }
 
+        /* ============ ANIMACIONES ============ */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(15, 118, 110, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(15, 118, 110, 0.8);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        section {
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        section:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        section:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        /* ============ TARJETAS INFOGRÁFICAS ============ */
+        .info-card {
+            background: linear-gradient(135deg, #fff8f0 0%, #f9fafb 100%);
+            border: 3px solid transparent;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+            border-color: var(--color-secondary-light);
+        }
+
+        .info-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-primary-dark);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .info-card-content {
+            color: var(--color-gray-text);
+            line-height: 1.8;
+        }
+
+        /* ============ ESTADÍSTICAS BOX ============ */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid var(--color-secondary);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(15, 118, 110, 0.1);
+        }
+
+        .stat-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(15, 118, 110, 0.2);
+        }
+
+        .stat-item.alt1 {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border-left-color: var(--color-accent);
+        }
+
+        .stat-item.alt2 {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left-color: #f59e0b;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item.alt1 .stat-number {
+            color: var(--color-accent);
+        }
+
+        .stat-item.alt2 .stat-number {
+            color: #d97706;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-dark-text);
+        }
+
+        .stat-description {
+            font-size: 0.85rem;
+            color: var(--color-gray-text);
+            margin-top: 0.5rem;
+        }
+
+        /* ============ DIAGRAMA MEJORADO ============ */
+        .diagram-container {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .diagram-ascii {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--color-primary-dark);
+            white-space: pre;
+            text-align: center;
+        }
+
+        /* ============ CAJAS DESTACADAS CON BORDE ANIMADO ============ */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.05) 0%, rgba(15, 118, 110, 0.05) 100%);
+            border: 2px solid transparent;
+            border-image: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-secondary) 100%) 1;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .highlight-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.1) 0%, rgba(15, 118, 110, 0.1) 100%);
+            pointer-events: none;
+        }
+
+        .highlight-box > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============ COMPARATIVA VISUAL ============ */
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .comparison-item {
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .comparison-item:hover {
+            border-color: var(--color-secondary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px var(--color-shadow);
+        }
+
+        .comparison-item-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-primary-dark);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .comparison-item-list {
+            list-style: none;
+            margin: 0;
+        }
+
+        .comparison-item-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--color-gray-text);
+        }
+
+        .comparison-item-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-secondary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-container {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
         /* ============ RESPONSIVE DESIGN ============ */
         @media (max-width: 768px) {
             header {
@@ -667,6 +940,36 @@
                 Está compuesta por tres componentes fundamentales que interactúan constantemente:
             </p>
 
+            <div class="diagram-container">
+                <div class="diagram-ascii">
+                    ╔════════════════════════════════════════════════════════════════╗
+                    ║                        💻 NÚCLEO DE CPU                        ║
+                    ╠════════════════════════════════════════════════════════════════╣
+                    ║                                                                ║
+                    ║        ┌──────────────────────────────────────────┐            ║
+                    ║        │         🎛️  UNIDAD DE CONTROL (UC)      │            ║
+                    ║        │  Decodifica instrucciones & genera      │            ║
+                    ║        │  señales de control                     │            ║
+                    ║        └──────────────────────────────────────────┘            ║
+                    ║                          ▲                                     ║
+                    ║                          │                                     ║
+                    ║    ┌─────────────────────┼─────────────────────┐              ║
+                    ║    │                     │                     │              ║
+                    ║    ▼                     ▼                     ▼              ║
+                    ║ ┌────────────┐    ┌────────────┐    ┌────────────┐           ║
+                    ║ │  ALU       │    │ REGISTROS  │    │  MEMORIA   │           ║
+                    ║ │ (Cálculos) │    │(Almacén)   │    │ (Volátil)  │           ║
+                    ║ │ + - × ÷    │    │ A,B,C,PC   │    │ RAM        │           ║
+                    ║ │ AND OR XOR │    │ IR, FLAGS  │    │ CACHÉ      │           ║
+                    ║ └────────────┘    └────────────┘    └────────────┘           ║
+                    ║                                                                ║
+                    ║              ⏱️  Reloj del Sistema (GHz)                       ║
+                    ║         Sincroniza todas las operaciones                      ║
+                    ║                                                                ║
+                    ╚════════════════════════════════════════════════════════════════╝
+                </div>
+            </div>
+
             <div class="component-box">
                 <h4>🔹 Unidad Aritmético-Lógica (ALU)</h4>
                 <p>
@@ -715,30 +1018,75 @@
                 Se repite constantemente mientras el computador esté en funcionamiento.
             </p>
 
-            <div class="hierarchy-diagram">
-                ┌─────────────────────────────────────────────┐<br>
-                │     CICLO DE INSTRUCCIÓN FUNDAMENTAL         │<br>
-                ├─────────────────────────────────────────────┤<br>
-                │ 1. FETCH (Búsqueda)                          │<br>
-                │    └─ PC → MAR (Memory Address Register)    │<br>
-                │    └─ Memoria → MDR (Memory Data Register)  │<br>
-                │    └─ MDR → IR (Instruction Register)       │<br>
-                │    └─ PC se incrementa                      │<br>
-                ├─────────────────────────────────────────────┤<br>
-                │ 2. DECODE (Decodificación)                  │<br>
-                │    └─ UC analiza el código de operación     │<br>
-                │    └─ UC genera microórdenes específicas    │<br>
-                │    └─ Se identifican operandos              │<br>
-                ├─────────────────────────────────────────────┤<br>
-                │ 3. EXECUTE (Ejecución)                      │<br>
-                │    └─ ALU realiza la operación              │<br>
-                │    └─ Se actualizan registros y FLAGS       │<br>
-                │    └─ Se escribe resultado en destino       │<br>
-                └─────────────────────────────────────────────┘
+            <div class="diagram-container">
+                <div class="diagram-ascii">
+╔═════════════════════════════════════════════════════════════════════════════════╗
+║                   ⚡ CICLO DE INSTRUCCIÓN FUNDAMENTAL ⚡                        ║
+║                                                                                 ║
+║                                                                                 ║
+║           ┌──────────────────────────────────────────────────────┐              ║
+║           │ 🔍 FASE 1: FETCH (BÚSQUEDA DE INSTRUCCIÓN)          │              ║
+║           ├──────────────────────────────────────────────────────┤              ║
+║           │  • PC → MAR (Memory Address Register)                │              ║
+║           │  • Memoria → MDR (Memory Data Register)              │              ║
+║           │  • MDR → IR (Instruction Register)                   │              ║
+║           │  • PC = PC + 1 (Incremento del contador)             │              ║
+║           └──────────────────────────────────────────────────────┘              ║
+║                          ⬇️ (Siguente etapa)                                    ║
+║           ┌──────────────────────────────────────────────────────┐              ║
+║           │ 🔧 FASE 2: DECODE (DECODIFICACIÓN)                  │              ║
+║           ├──────────────────────────────────────────────────────┤              ║
+║           │  • Unidad de Control analiza el código de operación  │              ║
+║           │  • Se generan microórdenes específicas               │              ║
+║           │  • Se identifican operandos necesarios               │              ║
+║           │  • Se preparan las rutas de datos                    │              ║
+║           └──────────────────────────────────────────────────────┘              ║
+║                          ⬇️ (Siguente etapa)                                    ║
+║           ┌──────────────────────────────────────────────────────┐              ║
+║           │ ⚙️  FASE 3: EXECUTE (EJECUCIÓN)                     │              ║
+║           ├──────────────────────────────────────────────────────┤              ║
+║           │  • ALU realiza la operación especificada             │              ║
+║           │  • Se actualizan registros y FLAGS                   │              ║
+║           │  • Se escribe resultado en registro destino          │              ║
+║           │  • Vuelve a FETCH (ciclo repetitivo)                │              ║
+║           └──────────────────────────────────────────────────────┘              ║
+║                                                                                 ║
+║  ⏱️  TIEMPO: 1-3 ciclos de reloj por instrucción (CPU moderna)                 ║
+║  💻 VELOCIDAD: Miles de millones de ciclos por segundo (GHz)                   ║
+║                                                                                 ║
+╚═════════════════════════════════════════════════════════════════════════════════╝
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">1-3</div>
+                    <div class="stat-label">Ciclos por Instrucción</div>
+                    <div class="stat-description">En CPU modernas</div>
+                </div>
+                <div class="stat-item alt1">
+                    <div class="stat-number">GHz</div>
+                    <div class="stat-label">Velocidad de Reloj</div>
+                    <div class="stat-description">Típicamente 2.0-5.0 GHz</div>
+                </div>
+                <div class="stat-item alt2">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Repeticiones</div>
+                    <div class="stat-description">Mientras el PC esté encendido</div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-title">⚡ Información Crítica para Investigaciones Forenses</div>
+                <div class="info-card-content">
+                    El contenido de los registros y cache se pierde al apagar el computador. Esto es crucial en investigaciones: 
+                    los datos volátiles en memoria (RAM, registros) pueden ser capturados antes del apagado mediante técnicas de 
+                    <strong>Live Forensics</strong> para preservar evidencia digital que de otro modo se perdería.
+                </div>
             </div>
 
             <p>
-                <strong>Importante:</strong> Este ciclo se ejecuta miles de millones de veces por segundo. 
+                <strong>🔑 Punto Clave:</strong> Este ciclo se ejecuta miles de millones de veces por segundo. 
                 La frecuencia de reloj (medida en GHz) determina cuántos ciclos por segundo puede ejecutar la CPU.
             </p>
 
@@ -845,10 +1193,31 @@
                     Almacenamiento persistente (no volátil) que retiene datos incluso sin alimentación eléctrica. 
                     Incluye discos duros (HDD) y unidades de estado sólido (SSD).
                 </p>
-                <ul>
-                    <li><strong>HDD:</strong> Magnéticos, datos en platos giratorios, más lentos pero más baratos</li>
-                    <li><strong>SSD:</strong> Memoria flash, sin partes móviles, mucho más rápidos</li>
-                </ul>
+            </div>
+
+            <div class="comparison-container">
+                <div class="comparison-item">
+                    <div class="comparison-item-title">💿 HDD (Disco Duro)</div>
+                    <ul class="comparison-item-list">
+                        <li>Tecnología magnética con platos giratorios</li>
+                        <li>Velocidad: 5400 - 7200 RPM típicamente</li>
+                        <li>Tiempo acceso: 5-15 ms</li>
+                        <li>Mayor capacidad por $ (más barato)</li>
+                        <li>Más susceptibles a fallas mecánicas</li>
+                        <li>Dejan rastros magnéticos residuales</li>
+                    </ul>
+                </div>
+                <div class="comparison-item">
+                    <div class="comparison-item-title">⚡ SSD (Estado Sólido)</div>
+                    <ul class="comparison-item-list">
+                        <li>Tecnología basada en memoria flash</li>
+                        <li>Sin partes móviles, más rápido</li>
+                        <li>Tiempo acceso: 0.1-0.2 ms</li>
+                        <li>Mayor confiabilidad física</li>
+                        <li>Desgaste por ciclos de escritura (NAND flash)</li>
+                        <li>Datos pueden recuperarse incluso tras borrado</li>
+                    </ul>
+                </div>
             </div>
 
             <button class="toggle-btn" onclick="toggleContent('cache-details')">
@@ -952,13 +1321,27 @@
                         <td>Puede cambiar al cambiar de red o configuración</td>
                         <td>Permanente (aunque puede ser "spoofed" en software)</td>
                     </tr>
-                    <tr>
-                        <td><strong>Protocolo Asociado</strong></td>
-                        <td>IP (Internet Protocol)</td>
-                        <td>ARP (Address Resolution Protocol - mapea IP a MAC)</td>
                     </tr>
                 </tbody>
             </table>
+
+            <div class="highlight-box">
+                <h4 style="margin-top: 0; color: var(--color-primary-dark);">🎯 Resumen Visual: IP vs MAC en Capas OSI</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                    <div style="padding: 1rem; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-left: 4px solid var(--color-primary-dark); border-radius: 8px;">
+                        <strong style="color: var(--color-primary-dark);">🌍 Dirección IP</strong><br>
+                        Capa 3 (Red)<br>
+                        <code>192.168.1.100</code><br>
+                        <small>Enrutamiento entre redes</small>
+                    </div>
+                    <div style="padding: 1rem; background: linear-gradient(135deg, #f0fef0 0%, #e0fae0 100%); border-left: 4px solid var(--color-secondary); border-radius: 8px;">
+                        <strong style="color: var(--color-secondary);">💻 Dirección MAC</strong><br>
+                        Capa 2 (Enlace)<br>
+                        <code>00:1A:2B:3C:4D:5E</code><br>
+                        <small>Entrega en red local</small>
+                    </div>
+                </div>
+            </div>
 
             <div class="component-box">
                 <h4>🔍 Protocolo ARP (Address Resolution Protocol)</h4>
@@ -976,12 +1359,73 @@
                 </ol>
             </div>
 
+            <div class="diagram-container">
+                <div class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────┐
+│                      🔗 PROCESO ARP (Request/Reply)                    │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│  PC A: 192.168.1.100          PC B: 192.168.1.110                     │
+│  MAC: AA:AA:AA:AA:AA:AA      MAC: BB:BB:BB:BB:BB:BB                   │
+│                                                                         │
+│                   ➊ ARP REQUEST (BROADCAST)                            │
+│                  "¿Quién es 192.168.1.110?"                           │
+│                         ↓                                              │
+│                    RED LOCAL                                           │
+│                         ↓                                              │
+│              ➋ ARP REPLY (UNICAST)                                     │
+│         "Yo soy 192.168.1.110: BB:BB:BB:BB:BB:BB"                    │
+│                         ↓                                              │
+│     ➌ PC A actualiza tabla ARP                                        │
+│     192.168.1.110 → BB:BB:BB:BB:BB:BB                                 │
+│                                                                         │
+│     ➍ PC A envía datos a BB:BB:BB:BB:BB:BB directamente               │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-title">🔐 Importancia Forense de ARP</div>
+                <div class="info-card-content">
+                    La tabla ARP puede ser manipulada mediante <strong>ARP Spoofing</strong>, donde un atacante suplanta 
+                    la MAC de un dispositivo legítimo. El análisis forense de tráfico ARP puede revelar intentos de ataque, 
+                    usurpación de identidad y movimientos laterales en la red.
+                </div>
+            </div>
+
             <h3>2.3 Topologías Físicas de Redes y su Impacto Operacional</h3>
             <p>
                 La topología física es la disposición espacial de los componentes de una red. 
                 Determina cómo están interconectados los nodos y afecta directamente la confiabilidad, 
                 rendimiento y facilidad de mantenimiento.
             </p>
+
+            <div class="diagram-container">
+                <div class="diagram-ascii">
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                      🌐 TOPOLOGÍAS FÍSICAS DE REDES                            │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│  ⭐ ESTRELLA          ⭕ ANILLO           📐 BUS                               │
+│                                                                                 │
+│      PC1                PC1─PC2            PC1─PC2─PC3                        │
+│       │                  │  │               │   │   │                         │
+│       │                  │  │               └───┴───┘                         │
+│      SWITCH              PC3                 (Conexión                       │
+│     ╱ │ ╲                 │                  en línea)                       │
+│    ╱  │  ╲                │                                                  │
+│  PC2-SWITCH-PC3        PC4─PC5                                               │
+│                                                                                 │
+│  Muy centralizado    Circular  Lineal     Muy simple                         │
+│  Más cableado        Menos cableado       Menos cableado                    │
+│                                                                                 │
+│  Hoy en día es el   Histórica (Token Ring) Histórica                        │
+│  estándar           Muy rara               Obsoleta                         │
+│                                                                                 │
+└─────────────────────────────────────────────────────────────────────────────────┘
+                </div>
+            </div>
 
             <div class="topology-grid">
                 <div class="topology-card">
@@ -1160,6 +1604,36 @@
                 de ciberdelitos. A diferencia del almacenamiento en disco (que es persistente), la RAM es volátil y se borra 
                 al apagar el equipo o cuando se agota el tiempo de retención de datos en las celdas de memoria.
             </p>
+
+            <div class="diagram-container">
+                <div class="diagram-ascii">
+╔════════════════════════════════════════════════════════════════════════════════╗
+║           ⏱️  LÍNEA DE TIEMPO: VOLATILIDAD DE DATOS EN MEMORIA              ║
+╠════════════════════════════════════════════════════════════════════════════════╣
+║                                                                                ║
+║  T=0  PC Encendido ─┐ RAM llena de datos                                     ║
+║                     │                                                         ║
+║  T=∞  En operación  ├─ VENTANA CRÍTICA PARA LIVE FORENSICS                   ║
+║                     │ Datos de ataque activos en memoria                     ║
+║                     │ Procesos maliciosos ejecutándose                       ║
+║  T=X  Apagado OFF   ├─ ⚠️ PUNTO DE NO RETORNO                                ║
+║       └─ Gracias    │                                                         ║
+║       por los       ├─ RAM se descarga gradualmente                           ║
+║       datos...      │                                                         ║
+║                     │                                                         ║
+║  T=X+5 Minutos      │ La mayor parte de datos se ha perdido                  ║
+║       Almacenamiento                                                          ║
+║       secundario     └─ Solo disco/SSD retiene evidencia                      ║
+║       (Persistente)                                                           ║
+║                                                                                ║
+║  ✓ ACCIÓN CORRECTA:                                                          ║
+║    • Capturar RAM ANTES de apagar (Live Forensics)                           ║
+║    • Usar herramientas como Volatility, Memdump, FTK Imager                  ║
+║    • Preservar cadena de custodia digital desde el inicio                     ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+                </div>
+            </div>
 
             <div class="component-box">
                 <h4>🎯 Por Qué la RAM es Crítica para la Investigación</h4>
@@ -1594,4 +2068,4 @@
         console.log('%c🎯 Diseño: Responsivo, Accesible y Optimizado para todos los dispositivos', 'color: #dc2626; font-size: 13px; font-weight: 500;');
     </script>
 </body>
-</html>
+</htm
