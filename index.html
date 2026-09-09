@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal de divulgación técnica sobre Arquitectura de Computadores, Redes de Comunicaciones e Informática Forense">
+    <meta name="author" content="Desarrollador Web Frontend y Analista Forense">
+    <title>Portal Técnico: Computadores, Redes e Informática Forense</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #1e3a8a;
+            --color-secondary: #0f766e;
+            --color-accent: #dc2626;
+            --color-light-bg: #f8fafc;
+            --color-dark-text: #1e293b;
+            --color-border: #e2e8f0;
+            --spacing-unit: 1rem;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--color-dark-text);
+            background-color: var(--color-light-bg);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            padding: 3rem var(--spacing-unit);
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Navegación */
+        nav {
+            background-color: var(--color-primary);
+            padding: 0.5rem var(--spacing-unit);
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            border-bottom: 3px solid var(--color-accent);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: var(--color-secondary);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem var(--spacing-unit);
+        }
+
+        section {
+            background-color: white;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--color-secondary);
+        }
+
+        section:nth-child(2) {
+            border-left-color: var(--color-accent);
+        }
+
+        section:nth-child(3) {
+            border-left-color: var(--color-primary);
+        }
+
+        section h2 {
+            color: var(--color-primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        section h3 {
+            color: var(--color-secondary);
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        section h4 {
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        section p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        /* Listas */
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+        }
+
+        /* Contenedores especiales */
+        .component-box {
+            background-color: #f0f9ff;
+            border: 2px solid var(--color-secondary);
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .component-box h4 {
+            color: var(--color-secondary);
+            margin-top: 0;
+        }
+
+        .hierarchy-diagram {
+            background-color: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: monospace;
+        }
+
+        .topology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .topology-card {
+            background-color: #f5f5f5;
+            border: 2px solid var(--color-primary);
+            border-radius: 6px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .topology-card h5 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .forensic-highlight {
+            background-color: #fee2e2;
+            border-left: 4px solid var(--color-accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .forensic-highlight strong {
+            color: var(--color-accent);
+        }
+
+        /* Tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background-color: white;
+        }
+
+        table th {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-primary);
+            color: white;
+            text-align: center;
+            padding: 2rem var(--spacing-unit);
+            margin-top: 2rem;
+            border-top: 3px solid var(--color-accent);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Botones interactivos */
+        .toggle-btn {
+            background-color: var(--color-secondary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            margin: 1rem 0;
+        }
+
+        .toggle-btn:hover {
+            background-color: var(--color-primary);
+        }
+
+        .toggle-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: #f0f9ff;
+            border-radius: 4px;
+        }
+
+        .toggle-content.active {
+            max-height: 2000px;
+            padding: 1rem;
+            border: 1px solid var(--color-secondary);
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            section {
+                padding: 1.5rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            section h3 {
+                font-size: 1.2rem;
+            }
+
+            nav {
+                gap: 0.5rem;
+            }
+
+            nav a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .topology-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            table th, table td {
+                padding: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            main {
+                padding: 1rem 0.5rem;
+            }
+
+            section {
+                padding: 1rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            nav a {
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔧 Portal Técnico Integral</h1>
+        <p>Arquitectura de Computadores | Redes de Comunicaciones | Informática Forense</p>
+    </header>
+
+    <nav>
+        <a href="#modulo1">Módulo 1: Arquitectura CPU</a>
+        <a href="#modulo2">Módulo 2: Redes</a>
+        <a href="#modulo3">Módulo 3: Investigación Forense</a>
+    </nav>
+
+    <main>
+        <!-- MÓDULO 1: Arquitectura y Estructura de Computadores -->
+        <section id="modulo1">
+            <h2>📊 Módulo 1: Arquitectura y Estructura de Computadores</h2>
+
+            <h3>1.1 Componentes Principales de la CPU</h3>
+            <p>
+                La Unidad Central de Proceso (CPU) es el "cerebro" del computador y ejecuta todas las instrucciones. 
+                Está compuesta por tres componentes fundamentales que interactúan constantemente:
+            </p>
+
+            <div class="component-box">
+                <h4>🔹 Unidad Aritmético-Lógica (ALU)</h4>
+                <p>
+                    La ALU es responsable de realizar todas las operaciones aritméticas (suma, resta, multiplicación, división) 
+                    y lógicas (AND, OR, NOT, XOR) sobre los datos. Es el componente más activo durante la ejecución de instrucciones.
+                </p>
+                <ul>
+                    <li><strong>Operaciones Aritméticas:</strong> Cálculos numéricos en punto fijo o flotante</li>
+                    <li><strong>Operaciones Lógicas:</strong> Comparaciones y operaciones booleanas</li>
+                    <li><strong>Operaciones de Desplazamiento:</strong> Desplazamiento de bits hacia izquierda o derecha</li>
+                </ul>
+            </div>
+
+            <div class="component-box">
+                <h4>🔹 Unidad de Control (UC)</h4>
+                <p>
+                    La UC es el "director de orquesta" que coordina todas las operaciones del computador. 
+                    Genera las señales de control que indican qué debe hacer cada componente en cada momento.
+                </p>
+                <ul>
+                    <li><strong>Decodificación:</strong> Interpreta instrucciones del programa</li>
+                    <li><strong>Generación de Microórdenes:</strong> Produce señales de control específicas</li>
+                    <li><strong>Sincronización:</strong> Coordina todas las operaciones mediante el reloj (clock)</li>
+                </ul>
+            </div>
+
+            <div class="component-box">
+                <h4>🔹 Registros</h4>
+                <p>
+                    Los registros son pequeñas áreas de almacenamiento de altísima velocidad ubicadas directamente en la CPU. 
+                    Son el nivel más rápido de memoria y almacenan datos temporales durante la ejecución de instrucciones.
+                </p>
+                <ul>
+                    <li><strong>Registro de Acumulador (A):</strong> Almacena resultados de operaciones ALU</li>
+                    <li><strong>Registro de Datos (B, C, D):</strong> Almacenan operandos y datos temporales</li>
+                    <li><strong>Contador de Programa (PC):</strong> Contiene la dirección de la próxima instrucción</li>
+                    <li><strong>Registro de Instrucción (IR):</strong> Contiene la instrucción siendo ejecutada</li>
+                    <li><strong>Registro de Estado (FLAGS):</strong> Almacena banderas de condición (zero, carry, overflow)</li>
+                    <li><strong>Puntero de Pila (SP):</strong> Apunta al tope de la pila en memoria</li>
+                </ul>
+            </div>
+
+            <h3>1.2 Ciclo de Instrucción: Fetch-Decode-Execute</h3>
+            <p>
+                El ciclo de instrucción es el proceso fundamental mediante el cual la CPU ejecuta programas. 
+                Se repite constantemente mientras el computador esté en funcionamiento.
+            </p>
+
+            <div class="hierarchy-diagram">
+                ┌─────────────────────────────────────────────┐<br>
+                │     CICLO DE INSTRUCCIÓN FUNDAMENTAL         │<br>
+                ├─────────────────────────────────────────────┤<br>
+                │ 1. FETCH (Búsqueda)                          │<br>
+                │    └─ PC → MAR (Memory Address Register)    │<br>
+                │    └─ Memoria → MDR (Memory Data Register)  │<br>
+                │    └─ MDR → IR (Instruction Register)       │<br>
+                │    └─ PC se incrementa                      │<br>
+                ├─────────────────────────────────────────────┤<br>
+                │ 2. DECODE (Decodificación)                  │<br>
+                │    └─ UC analiza el código de operación     │<br>
+                │    └─ UC genera microórdenes específicas    │<br>
+                │    └─ Se identifican operandos              │<br>
+                ├─────────────────────────────────────────────┤<br>
+                │ 3. EXECUTE (Ejecución)                      │<br>
+                │    └─ ALU realiza la operación              │<br>
+                │    └─ Se actualizan registros y FLAGS       │<br>
+                │    └─ Se escribe resultado en destino       │<br>
+                └─────────────────────────────────────────────┘
+            </div>
+
+            <p>
+                <strong>Importante:</strong> Este ciclo se ejecuta miles de millones de veces por segundo. 
+                La frecuencia de reloj (medida en GHz) determina cuántos ciclos por segundo puede ejecutar la CPU.
+            </p>
+
+            <h3>1.3 Jerarquía de Memoria</h3>
+            <p>
+                Los computadores modernos emplean una jerarquía de memoria que equilibra velocidad y capacidad. 
+                A mayor proximidad con la CPU, mayor velocidad pero menor capacidad y mayor costo.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nivel</th>
+                        <th>Tipo</th>
+                        <th>Capacidad Típica</th>
+                        <th>Velocidad</th>
+                        <th>Ubicación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1 (Más rápida)</td>
+                        <td>Registros</td>
+                        <td>64-512 bytes</td>
+                        <td>1-2 ciclos</td>
+                        <td>Dentro de CPU</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Cache L1</td>
+                        <td>32-64 KB</td>
+                        <td>3-4 ciclos</td>
+                        <td>Dentro de CPU</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Cache L2</td>
+                        <td>256 KB - 1 MB</td>
+                        <td>10-20 ciclos</td>
+                        <td>Dentro de CPU</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Cache L3</td>
+                        <td>2-20 MB</td>
+                        <td>40-75 ciclos</td>
+                        <td>Fuera de núcleo</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Memoria RAM</td>
+                        <td>4 GB - 256 GB</td>
+                        <td>100-300 ciclos</td>
+                        <td>Tarjeta de memoria</td>
+                    </tr>
+                    <tr>
+                        <td>6 (Más lenta)</td>
+                        <td>Almacenamiento Secundario</td>
+                        <td>TB</td>
+                        <td>Millones de ciclos</td>
+                        <td>Disco duro/SSD</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="component-box">
+                <h4>📍 Registros</h4>
+                <p>
+                    Son las celdas de memoria más rápidas dentro de la CPU. Almacenan datos inmediatos 
+                    necesarios para la ejecución actual. En un procesador moderno de 64 bits, cada registro almacena 64 bits (8 bytes).
+                </p>
+            </div>
+
+            <div class="component-box">
+                <h4>📍 Memoria Caché (L1, L2, L3)</h4>
+                <p>
+                    Memorias intermedias que reducen el acceso a RAM. Funcionan con el principio de 
+                    <strong>localidad espacial y temporal</strong>: si el CPU accede a un dato, probablemente accederá a datos cercanos pronto.
+                </p>
+                <ul>
+                    <li><strong>L1:</strong> Más rápida, generalmente dividida en datos (dL1) e instrucciones (iL1)</li>
+                    <li><strong>L2:</strong> Más capacidad que L1, exclusiva por núcleo</li>
+                    <li><strong>L3:</strong> Compartida entre núcleos, enlace con RAM</li>
+                </ul>
+            </div>
+
+            <div class="component-box">
+                <h4>📍 Memoria RAM (Random Access Memory)</h4>
+                <p>
+                    Memoria volátil de acceso aleatorio que almacena programas y datos durante la ejecución. 
+                    Su contenido se pierde cuando se apaga el computador, aspecto crucial en investigación forense.
+                </p>
+                <ul>
+                    <li>Acceso rápido pero más lento que registros y caché</li>
+                    <li>Voltaje típico: 1.2V - 1.5V en DDR4/DDR5</li>
+                    <li>Tiempo de acceso: 100-300 nanosegundos</li>
+                    <li>Frecuencia: 2400 MHz a 6000+ MHz en DDR5</li>
+                </ul>
+            </div>
+
+            <div class="component-box">
+                <h4>📍 Almacenamiento Secundario</h4>
+                <p>
+                    Almacenamiento persistente (no volátil) que retiene datos incluso sin alimentación eléctrica. 
+                    Incluye discos duros (HDD) y unidades de estado sólido (SSD).
+                </p>
+                <ul>
+                    <li><strong>HDD:</strong> Magnéticos, datos en platos giratorios, más lentos pero más baratos</li>
+                    <li><strong>SSD:</strong> Memoria flash, sin partes móviles, mucho más rápidos</li>
+                </ul>
+            </div>
+
+            <button class="toggle-btn" onclick="toggleContent('cache-details')">
+                📚 Información Adicional: Funcionamiento de la Caché
+            </button>
+            <div class="toggle-content" id="cache-details">
+                <h4>Política de Reemplazo de Caché</h4>
+                <p>
+                    Cuando la caché está llena y llega un nuevo dato, se debe reemplazar un bloque existente. 
+                    Las políticas comunes incluyen:
+                </p>
+                <ul>
+                    <li><strong>LRU (Least Recently Used):</strong> Reemplaza el bloque menos usado recientemente</li>
+                    <li><strong>FIFO (First In First Out):</strong> Reemplaza el bloque más antiguo</li>
+                    <li><strong>Random:</strong> Reemplaza un bloque al azar</li>
+                </ul>
+                <p>
+                    <strong>Tasa de Acierto (Hit Rate):</strong> Porcentaje de accesos encontrados en caché. 
+                    Una tasa alta indica mejor rendimiento y menor acceso a RAM.
+                </p>
+            </div>
+        </section>
+
+        <!-- MÓDULO 2: Fundamentos de Redes de Comunicaciones -->
+        <section id="modulo2">
+            <h2>🌐 Módulo 2: Fundamentos de Redes de Comunicaciones</h2>
+
+            <h3>2.1 Conceptos Básicos y Componentes</h3>
+            <p>
+                Una red de comunicaciones es un conjunto de dispositivos interconectados que pueden intercambiar 
+                información. Su propósito es permitir la transmisión de datos entre computadores de forma confiable, 
+                segura y eficiente.
+            </p>
+
+            <div class="component-box">
+                <h4>Componentes Esenciales de una Red</h4>
+                <ul>
+                    <li><strong>Nodos:</strong> Dispositivos de la red (computadores, servidores, impresoras, switches)</li>
+                    <li><strong>Enlaces de Comunicación:</strong> Canales físicos o inalámbricos (cables UTP, fibra óptica, ondas radio)</li>
+                    <li><strong>Dispositivos de Interconexión:</strong> Elementos que conectan nodos (switches, routers, hubs)</li>
+                    <li><strong>Protocolos:</strong> Reglas que definen cómo se comunican los dispositivos</li>
+                    <li><strong>Medios de Transmisión:</strong> Físicos (cobre, fibra) o inalámbricos (radio, microondas)</li>
+                </ul>
+            </div>
+
+            <h3>2.2 Direcciones Lógicas (IP) vs. Direcciones Físicas (MAC): Diferencias Exactas</h3>
+            <p>
+                Uno de los conceptos más fundamentales en redes es la diferencia entre direcciones IP y direcciones MAC. 
+                Ambas son esenciales pero operan en capas diferentes del modelo OSI.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Característica</th>
+                        <th>Dirección IP (Lógica)</th>
+                        <th>Dirección MAC (Física)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Nivel OSI</strong></td>
+                        <td>Capa 3 (Red)</td>
+                        <td>Capa 2 (Enlace de Datos)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Formato</strong></td>
+                        <td>IPv4: 32 bits (ejemplo: 192.168.1.100)<br>IPv6: 128 bits</td>
+                        <td>48 bits, notación hexadecimal (ejemplo: 00:1A:2B:3C:4D:5E)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Naturaleza</strong></td>
+                        <td>Lógica, asignada por software</td>
+                        <td>Física, quemada en tarjeta de red (NIC)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alcance</strong></td>
+                        <td>Valida en redes remotas (Internet)</td>
+                        <td>Válida solo en la red local (LAN)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Asignación</strong></td>
+                        <td>DHCP, manual, estática o dinámica</td>
+                        <td>Única a nivel mundial (OUI + número de fabricante)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Enrutamiento</strong></td>
+                        <td>Utilizada para enrutamiento entre redes</td>
+                        <td>Utilizada para entrega en red local</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cambio</strong></td>
+                        <td>Puede cambiar al cambiar de red o configuración</td>
+                        <td>Permanente (aunque puede ser "spoofed" en software)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Protocolo Asociado</strong></td>
+                        <td>IP (Internet Protocol)</td>
+                        <td>ARP (Address Resolution Protocol - mapea IP a MAC)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="component-box">
+                <h4>🔍 Protocolo ARP (Address Resolution Protocol)</h4>
+                <p>
+                    ARP es el protocolo que relaciona direcciones IP con direcciones MAC en una red local. 
+                    Es fundamental para que dos dispositivos en la misma red puedan comunicarse.
+                </p>
+                <p><strong>Funcionamiento:</strong></p>
+                <ol>
+                    <li>Un dispositivo necesita enviar un paquete a una IP en la red local</li>
+                    <li>Envía un mensaje ARP en broadcast: "¿Quién tiene esta IP?"</li>
+                    <li>El dispositivo con esa IP responde con su MAC</li>
+                    <li>Se almacena la relación en la tabla ARP (caché local)</li>
+                    <li>Se puede enviar el paquete usando la MAC destino</li>
+                </ol>
+            </div>
+
+            <h3>2.3 Topologías Físicas de Redes y su Impacto Operacional</h3>
+            <p>
+                La topología física es la disposición espacial de los componentes de una red. 
+                Determina cómo están interconectados los nodos y afecta directamente la confiabilidad, 
+                rendimiento y facilidad de mantenimiento.
+            </p>
+
+            <div class="topology-grid">
+                <div class="topology-card">
+                    <h5>⭐ Topología Estrella</h5>
+                    <p>
+                        Todos los nodos se conectan a un dispositivo central (switch, hub). 
+                        El tráfico pasa obligatoriamente por el centro.
+                    </p>
+                    <p><strong>Ventajas:</strong></p>
+                    <ul style="text-align: left;">
+                        <li>Fácil de instalar y mantener</li>
+                        <li>Falla de un nodo no afecta otros</li>
+                        <li>Rendimiento predecible</li>
+                    </ul>
+                    <p><strong>Desventajas:</strong></p>
+                    <ul style="text-align: left;">
+                        <li>Si el centro falla, cae toda la red</li>
+                        <li>Requiere más cableado</li>
+                        <li>Cuello de botella en dispositivo central</li>
+                    </ul>
+                </div>
+
+                <div class="topology-card">
+                    <h5>⭕ Topología Anillo</h5>
+                    <p>
+                        Los nodos están conectados en forma de anillo cerrado. 
+                        Los datos circulan en una o ambas direcciones.
+                    </p>
+                    <p><strong>Ventajas:</strong></p>
+                    <ul style="text-align: left;">
+                        <li>Usa menos cable que estrella</li>
+                        <li>Rendimiento predecible (token ring)</li>
+                        <li>Puede ser bidireccional</li>
+                    </ul>
+                    <p><strong>Desventajas:</strong></p>
+                    <ul style="text-align: left;">
+                        <li>Rotura de un enlace cae la red</li>
+                        <li>Más complejo de configurar</li>
+                        <li>Más difícil de expandir</li>
+                    </ul>
+                </div>
+
+                <div class="topology-card">
+                    <h5>📐 Topología Bus</h5>
+                    <p>
+                        Todos los nodos comparten un único medio de transmisión (cable backbone). 
+                        Los datos se transmiten a toda la red.
+                    </p>
+                    <p><strong>Ventajas:</strong></p>
+                    <ul style="text-align: left;">
+                        <li>Económica, menos cable</li>
+                        <li>Fácil de instalar</li>
+                        <li>Buena para redes pequeñas</li>
+                    </ul>
+                    <p><strong>Desventajas:</strong></p>
+                    <ul style="text-align: left;">
+                        <li>Rotura del bus cae la red</li>
+                        <li>Colisiones de tráfico</li>
+                        <li>Difícil de diagnosticar problemas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="component-box">
+                <h4>Impacto Operacional de las Topologías</h4>
+                <p>
+                    <strong>Disponibilidad:</strong> Estrella es más robusta a fallos de nodos individuales, 
+                    pero vulnerable a fallos centrales. Anillo y Bus son más vulnerables a roturas de enlaces.
+                </p>
+                <p>
+                    <strong>Rendimiento:</strong> En Bus pueden ocurrir colisiones. En Anillo, cada nodo 
+                    introduce latencia. Estrella permite mejor control del flujo con switches.
+                </p>
+                <p>
+                    <strong>Escalabilidad:</strong> Estrella es fácil de escalar agregando puertos al switch. 
+                    Bus y Anillo requieren reconfiguración significativa.
+                </p>
+                <p>
+                    <strong>Mantenimiento:</strong> Estrella permite aislar problemas fácilmente. 
+                    Bus y Anillo requieren procedimientos complejos de diagnóstico.
+                </p>
+            </div>
+
+            <h3>2.4 Capas del Modelo OSI y Protocolos</h3>
+            <p>
+                El modelo OSI (Open Systems Interconnection) divide las comunicaciones de red en 7 capas. 
+                Comprenderlo es esencial para análisis de tráfico de red en investigaciones forenses.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Capa</th>
+                        <th>Nombre</th>
+                        <th>Función Principal</th>
+                        <th>Protocolos Comunes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>7</td>
+                        <td>Aplicación</td>
+                        <td>Interfaz con aplicaciones usuario</td>
+                        <td>HTTP, HTTPS, FTP, SMTP, DNS, SSH</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Presentación</td>
+                        <td>Cifrado, compresión, conversión de datos</td>
+                        <td>SSL/TLS, JPEG, MPEG</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Sesión</td>
+                        <td>Gestión de conversaciones</td>
+                        <td>NetBIOS, PPTP, RPC</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Transporte</td>
+                        <td>Entrega de datos extremo a extremo</td>
+                        <td>TCP, UDP, SCTP</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Red</td>
+                        <td>Enrutamiento y direccionamiento lógico</td>
+                        <td>IP (IPv4/IPv6), ICMP, IGMP</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Enlace de Datos</td>
+                        <td>Direccionamiento físico, acceso al medio</td>
+                        <td>Ethernet, PPP, MAC, ARP</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Física</td>
+                        <td>Transmisión de bits crudos</td>
+                        <td>Cables, conectores, señales eléctricas</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- MÓDULO 3: Aplicación en Investigación de Ciberdelitos -->
+        <section id="modulo3">
+            <h2>🔐 Módulo 3: Aplicación en la Investigación de Ciberdelitos</h2>
+
+            <h3>3.1 Relevancia de Estructura de Computadores y Redes en Investigación Forense</h3>
+            <p>
+                El conocimiento profundo de la estructura de computadores, la memoria RAM, los registros y el tráfico 
+                de red es absolutamente vital para un investigador policial en la República del Ecuador. 
+                La extracción de evidencias en vivo (live forensics) y el análisis forense post-mortem dependen completamente 
+                de la comprensión técnica de cómo operan estos sistemas a nivel fundamental.
+            </p>
+
+            <div class="forensic-highlight">
+                <strong>🚨 CONSIDERACIÓN CRÍTICA PERICIAL:</strong> En Ecuador, conforme a lo dispuesto en la Ley de Comercio 
+                Electrónico, Firmas Electrónicas y Mensajes de Datos, y la Ley Orgánica de Protección de Datos Personales, 
+                la cadena de custodia de evidencia digital es obligatoria desde el primer momento del análisis forense. 
+                La comprensión de la volatilidad de datos en RAM es fundamental para actuar correctamente.
+            </div>
+
+            <h3>3.2 Importancia de la Memoria RAM en Live Forensics</h3>
+            <p>
+                La Memoria de Acceso Aleatorio (RAM) es una fuente de evidencia de valor incalculable en investigaciones 
+                de ciberdelitos. A diferencia del almacenamiento en disco (que es persistente), la RAM es volátil y se borra 
+                al apagar el equipo o cuando se agota el tiempo de retención de datos en las celdas de memoria.
+            </p>
+
+            <div class="component-box">
+                <h4>🎯 Por Qué la RAM es Crítica para la Investigación</h4>
+                <ul>
+                    <li>
+                        <strong>Procesos Activos:</strong> Contiene todos los programas actualmente en ejecución. 
+                        Un programa malicioso puede no dejar rastro en disco, pero está activo en RAM.
+                    </li>
+                    <li>
+                        <strong>Variables de Estado:</strong> Contiene variables de programas, incluyendo contraseñas, 
+                        claves de sesión y datos de autenticación en memoria.
+                    </li>
+                    <li>
+                        <strong>Datos de Caché del Sistema:</strong> El kernel del SO cachea datos frecuentemente accedidos. 
+                        Archivos recientemente abiertos residen parcialmente en RAM.
+                    </li>
+                    <li>
+                        <strong>Información de Red:</strong> Las conexiones TCP/IP activas están en las estructuras de datos 
+                        del kernel en memoria. IP de atacantes, puertos y protocolos están disponibles.
+                    </li>
+                    <li>
+                        <strong>Claves de Cifrado:</strong> En sistemas con cifrado de disco completo (full disk encryption), 
+                        la clave maestra reside en RAM mientras el sistema está encendido.
+                    </li>
+                    <li>
+                        <strong>Historial de Comandos Shell:</strong> En sistemas Linux/Unix, el historial de comandos ejecutados 
+                        puede estar en memoria antes de ser escrito a disco.
+                    </li>
+                    <li>
+                        <strong>Datos de Ventanas Activas:</strong> Contenido no guardado de aplicaciones (documentos, navegadores, 
+                        editores de texto) residen en RAM.
+                    </li>
+                </ul>
+            </div>
+
+            <h3>3.3 Registros de la CPU: Evidencia de Ejecución en Tiempo Real</h3>
+            <p>
+                Los registros de la CPU, aunque son volátiles y pequeños, contienen información crítica sobre 
+                la ejecución de instrucciones en el momento exacto de la adquisición forense.
+            </p>
+
+            <div class="component-box">
+                <h4>🔍 Análisis Forense de Registros</h4>
+                <ul>
+                    <li>
+                        <strong>Contador de Programa (PC):</strong> Indica la instrucción que se estaba ejecutando. 
+                        Permite determinar qué código estaba activo en el momento de la extracción.
+                    </li>
+                    <li>
+                        <strong>Registro de Instrucción (IR):</strong> Contiene el opcode siendo ejecutado. 
+                        Revelan qué operación (lectura de archivo, conexión de red) estaba ocurriendo.
+                    </li>
+                    <li>
+                        <strong>Puntero de Pila (SP):</strong> Indica el estado de la pila de llamadas. 
+                        Muestra la cadena de funciones en ejecución (stack trace).
+                    </li>
+                    <li>
+                        <strong>Registro de Datos (Acumulador):</strong> Puede contener valores siendo procesados. 
+                        En algunos casos, datos de interés forense como direcciones de memoria o valores intermedios.
+                    </li>
+                    <li>
+                        <strong>Banderas (FLAGS):</strong> Indican el estado de ejecución (si se ejecutó un salto condicional, 
+                        si hay un error, estado de interrupción).
+                    </li>
+                </ul>
+            </div>
+
+            <div class="forensic-highlight">
+                <strong>⚖️ PROCEDIMIENTO PERICIAL ECUATORIANO:</strong> La Policía Nacional del Ecuador, 
+                mediante la Unidad de Delitos Cibernéticos, debe extraer registros de CPU usando herramientas 
+                certificadas como Volatility, DumpIt o herramientas específicas de fabricantes. Esta extracción 
+                debe documentarse meticulosamente en el acta de diligencia, identificando hora exacta (con zona horaria), 
+                dispositivo, persona que realiza la extracción y testigos presentes.
+            </div>
+
+            <h3>3.4 Análisis de Tráfico de Red en Investigaciones de Ciberdelitos</h3>
+            <p>
+                El tráfico de red es una fuente primaria de evidencia en delitos cibernéticos como fraude electrónico, 
+                acceso no autorizado, distribución de malware y comunicaciones ilícitas. Su análisis requiere comprensión 
+                profunda de protocolos y topologías.
+            </p>
+
+            <div class="component-box">
+                <h4>🌐 Información Extraíble del Tráfico de Red</h4>
+                <ul>
+                    <li>
+                        <strong>Direcciones IP Origen y Destino:</strong> Identifican los equipos involucrados. 
+                        Permite geolocalización y relación con dispositivos específicos en la topología de red.
+                    </li>
+                    <li>
+                        <strong>Direcciones MAC:</strong> En redes locales, MAC addresses revelan dispositivos específicos 
+                        y pueden detectar spoofing (suplantación de identidad).
+                    </li>
+                    <li>
+                        <strong>Puertos y Protocolos:</strong> Los puertos indican servicios (SSH=22, HTTP=80, HTTPS=443, SMTP=25). 
+                        Conexiones a puertos anormales sugieren actividad maliciosa.
+                    </li>
+                    <li>
+                        <strong>Timestamps:</strong> Fechas y horas exactas de conexiones. Son críticas para la cronología de eventos 
+                        y correlacionar con otras evidencias.
+                    </li>
+                    <li>
+                        <strong>Banderas TCP (Flags):</strong> SYN, ACK, FIN, RST indican el estado de la conexión. 
+                        Patrones anormales (ej: múltiples SYN sin respuesta) indican intentos de ataque.
+                    </li>
+                    <li>
+                        <strong>Carga útil (Payload):</strong> En protocolos desencriptados (HTTP, FTP, Telnet), 
+                        permite ver comandos, credenciales y contenido transmitido.
+                    </li>
+                    <li>
+                        <strong>User-Agent y Headers HTTP:</strong> Identifica navegadores, sistemas operativos. 
+                        User-Agents falsos pueden indicar automatización de ataques.
+                    </li>
+                    <li>
+                        <strong>DNS Queries:</strong> Dominios consultados revelan intención del usuario. 
+                        Consultas a dominios ilícitos (dark web marketplaces) son altamente incriminatorias.
+                    </li>
+                </ul>
+            </div>
+
+            <h3>3.5 Cadena de Custodia Digital: Marco Legal Ecuatoriano</h3>
+            <p>
+                En la República del Ecuador, la evidencia digital debe cumplir requisitos específicos de autenticidad, 
+                integridad e inalterabilidad conforme a:
+            </p>
+            <ul>
+                <li><strong>Código de Procedimiento Penal (COIP)</strong> - Artículos sobre prueba digital</li>
+                <li><strong>Ley de Comercio Electrónico, Firmas Electrónicas y Mensajes de Datos</strong></li>
+                <li><strong>Ley Orgánica de Protección de Datos Personales (LOPDP)</strong></li>
+                <li><strong>Directivas de la Policía Nacional sobre Delitos Cibernéticos</strong></li>
+            </ul>
+
+            <div class="forensic-highlight">
+                <strong>📋 REQUISITOS DE EVIDENCIA ADMISIBLE EN ECUADOR:</strong>
+                <ol>
+                    <li>
+                        <strong>Autenticidad:</strong> Demostrar que la evidencia es lo que se afirma ser. 
+                        Incluye testigos, documentación del lugar y dispositivos utilizados.
+                    </li>
+                    <li>
+                        <strong>Integridad:</strong> Garantizar que no ha sido modificada. Se logra con:
+                        <ul style="margin-top: 0.5rem;">
+                            <li>Hash criptográfico (MD5, SHA-256) de la imagen forense</li>
+                            <li>Documentación de cada paso del análisis</li>
+                            <li>Sellado temporal de cadena de custodia</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Confiabilidad:</strong> Utilizar herramientas forenses validadas y procedimientos aceptados 
+                        en la comunidad internacional de peritos.
+                    </li>
+                    <li>
+                        <strong>Relevancia:</strong> La evidencia debe relacionarse directamente con los hechos investigados 
+                        y debe ser pertinente a las acusaciones.
+                    </li>
+                </ol>
+            </div>
+
+            <h3>3.6 Extracción de Evidencia en Vivo (Live Forensics)</h3>
+            <p>
+                Cuando un dispositivo está encendido durante la investigación, debe realizarse una extracción forense 
+                en vivo antes de apagarlo, ya que apagar el equipo destruiría la RAM permanentemente.
+            </p>
+
+            <div class="component-box">
+                <h4>🛡️ Procedimiento de Live Forensics en Ecuador</h4>
+                <ol>
+                    <li>
+                        <strong>Documentación Inicial:</strong> Fotografía del estado del dispositivo, 
+                        cables conectados, programas visibles en pantalla.
+                    </li>
+                    <li>
+                        <strong>Aislamiento de Red (si es seguro):</strong> Desconectar el dispositivo de internet 
+                        para prevenir que malware escape o se destruya.
+                    </li>
+                    <li>
+                        <strong>Conexión de Herramientas Forenses:</strong> Conectar dispositivo USB o ejecutar 
+                        herramienta de memoria remota (ej: Volatility) con máxima cautela de no introducir modificaciones.
+                    </li>
+                    <li>
+                        <strong>Extracción de Memoria RAM:</strong> Usar DumpIt, FTK Imager o similares para crear 
+                        imagen de RAM completa. Guardar con timestamp exacto en UTC.
+                    </li>
+                    <li>
+                        <strong>Extracción de Registros de CPU:</strong> Capturar estado de registros de CPU si la herramienta lo permite.
+                    </li>
+                    <li>
+                        <strong>Captura de Tráfico de Red:</strong> Si hay conexiones activas relevantes, capturar con tcpdump/Wireshark 
+                        (con consentimiento y dentro del marco legal).
+                    </li>
+                    <li>
+                        <strong>Listado de Procesos:</strong> Ejecutar <code>ps aux</code> (Linux) o Task Manager con captura de pantalla.
+                    </li>
+                    <li>
+                        <strong>Conexiones de Red Activas:</strong> <code>netstat -an</code> o <code>ss -an</code> para ver conexiones TCP/UDP.
+                    </li>
+                    <li>
+                        <strong>Tabla ARP:</strong> <code>arp -a</code> para identificar dispositivos en la red local.
+                    </li>
+                    <li>
+                        <strong>Cálculo de Hashes:</strong> SHA-256 de todas las imágenes capturadas, documentadas en acta.
+                    </li>
+                    <li>
+                        <strong>Cierre Seguro:</strong> Una vez capturada la RAM, puede procederse a apagar ordenadamente 
+                        o aislar el dispositivo según protocolos.
+                    </li>
+                </ol>
+            </div>
+
+            <button class="toggle-btn" onclick="toggleContent('cmdlist')">
+                💻 Comandos Forenses Comúnmente Utilizados
+            </button>
+            <div class="toggle-content" id="cmdlist">
+                <h4>Comandos en Linux para Análisis en Vivo</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Comando</th>
+                            <th>Propósito Forense</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>ps aux</code></td>
+                            <td>Lista todos los procesos activos con detalles (PID, CPU, memoria, línea de comandos)</td>
+                        </tr>
+                        <tr>
+                            <td><code>netstat -an</code></td>
+                            <td>Muestra conexiones TCP/UDP activas con IPs y puertos</td>
+                        </tr>
+                        <tr>
+                            <td><code>arp -a</code></td>
+                            <td>Tabla ARP local, muestra mapeo IP-MAC de dispositivos vecinos</td>
+                        </tr>
+                        <tr>
+                            <td><code>lsof -i</code></td>
+                            <td>Lista archivos abiertos por procesos, incluyendo conexiones de red</td>
+                        </tr>
+                        <tr>
+                            <td><code>w</code></td>
+                            <td>Usuarios conectados actualmente, terminal, dirección IP origen</td>
+                        </tr>
+                        <tr>
+                            <td><code>last</code></td>
+                            <td>Historial de logins (extraído de archivos de log)</td>
+                        </tr>
+                        <tr>
+                            <td><code>history</code></td>
+                            <td>Historial de comandos shell ejecutados en la sesión actual</td>
+                        </tr>
+                        <tr>
+                            <td><code>cat /proc/meminfo</code></td>
+                            <td>Información detallada de memoria RAM disponible y utilizada</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>3.7 Análisis Post-Mortem y Correspondencia con Estructura de Computadores</h3>
+            <p>
+                Después de apagar el dispositivo, se realiza un análisis en laboratorio en una imagen forense 
+                (copia bit a bit de los medios de almacenamiento) sin modificar el dispositivo original.
+            </p>
+
+            <div class="component-box">
+                <h4>🔬 Relación entre Componentes Computacionales y Análisis</h4>
+                <ul>
+                    <li>
+                        <strong>Registros de Transacciones:</strong> Los discos duros/SSDs contienen información de todo 
+                        lo que ha residido en memoria alguna vez (swap, paging files en Windows).
+                    </li>
+                    <li>
+                        <strong>Caché de Disco:</strong> Los cachés L1/L2/L3 pueden contener vestigios de datos accedidos 
+                        (aunque muy pequeños) que a veces pueden recuperarse.
+                    </li>
+                    <li>
+                        <strong>Fragmentación:</strong> Archivos fragmentados en almacenamiento secundario dejan "pistas" 
+                        de fragmentos en diferentes clusters, útil para recuperación.
+                    </li>
+                    <li>
+                        <strong>Slack Space:</strong> El espacio no utilizado en clusters (entre EOF y final del cluster) 
+                        puede contener datos residuales de anteriores archivos.
+                    </li>
+                </ul>
+            </div>
+
+            <h3>3.8 Análisis Forense de Protocolos y Topologías de Red</h3>
+            <p>
+                En delitos que involucran redes (estafa electrónica, fraude bancario, distribución de malware), 
+                el análisis de la topología y el tráfico es crucial.
+            </p>
+
+            <div class="forensic-highlight">
+                <strong>📡 CASO FORENSE EJEMPLO - Análisis de Fraude Electrónico en Ecuador:</strong>
+                <p>
+                    En investigación de fraude bancario, se captura archivo pcap de tráfico de red. El análisis revela:
+                </p>
+                <ul>
+                    <li>
+                        <strong>IP origen:</strong> 192.168.1.50 (red interna del empresa afectada)
+                    </li>
+                    <li>
+                        <strong>IP destino:</strong> 123.45.67.89 (servidor en jurisdicción extranjera)
+                    </li>
+                    <li>
+                        <strong>MAC origen:</strong> 00:1A:2B:3C:4D:5E (identifica dispositivo específico en topología física)
+                    </li>
+                    <li>
+                        <strong>Puerto destino:</strong> 443 HTTPS (conexión cifrada, pero flow metadata es evidencia)
+                    </li>
+                    <li>
+                        <strong>Timestamps:</strong> Múltiples conexiones a las 03:15 AM (hora sospechosa, fuera de horario laboral)
+                    </li>
+                    <li>
+                        <strong>DNS query previos:</strong> Resolución de dominio phishing relacionado con banco víctima
+                    </li>
+                </ul>
+                <p>
+                    La cadena de evidencia: IP → MAC → Dispositivo → Usuario → Archivos en almacenamiento → Procesos en RAM 
+                    proporciona relato convincente para enjuiciamiento.
+                </p>
+            </div>
+
+            <h3>3.9 Herramientas Forenses Estándar Internacionales</h3>
+            <p>
+                La Policía Nacional del Ecuador utiliza herramientas validadas internacionalmente en investigaciones 
+                de alto nivel. Estas herramientas permiten análisis de memoria RAM, registros y tráfico de red.
+            </p>
+
+            <ul>
+                <li>
+                    <strong>Volatility:</strong> Herramienta de análisis de memoria RAM. Extrae procesos, 
+                    conexiones de red, archivos abiertos, variables de kernel, etc.
+                </li>
+                <li>
+                    <strong>Wireshark:</strong> Analizador de protocolos de red. Permite inspeccionar cada paquete capturado, 
+                    filtrar por protocolo, IP, puerto.
+                </li>
+                <li>
+                    <strong>FTK Imager:</strong> Herramienta de Forensic Toolkit para crear imágenes forenses y 
+                    capturar memoria RAM con validación de integridad.
+                </li>
+                <li>
+                    <strong>Burp Suite:</strong> Análisis de aplicaciones web, interceptación de tráfico HTTPS 
+                    (en ámbito del análisis autorizado).
+                </li>
+                <li>
+                    <strong>tcpdump:</strong> Capturador de paquetes de línea de comandos, permite captura 
+                    remota de tráfico para análisis posterior.
+                </li>
+                <li>
+                    <strong>GDB/LLDB:</strong> Debuggers para análisis a nivel de registros de CPU y memoria de procesos.
+                </li>
+            </ul>
+
+            <h3>3.10 Consideraciones Legales y Éticas en Ecuador</h3>
+            <p>
+                Los investigadores policiales en Ecuador deben adherirse estrictamente a marcos legales específicos 
+                en análisis forense digital.
+            </p>
+
+            <div class="forensic-highlight">
+                <strong>⚖️ MARCO LEGAL APLICABLE EN ECUADOR:</strong>
+                <ul>
+                    <li>
+                        <strong>Derecho a la Privacidad:</strong> Artículo 66 de la Constitución de Ecuador 
+                        (derecho a privacidad, honor, buen nombre). Cualquier análisis forense debe tener orden judicial.
+                    </li>
+                    <li>
+                        <strong>Acceso Autorizado:</strong> Solo con orden de autoridad competente. 
+                        Acceso sin consentimiento viola COIP.
+                    </li>
+                    <li>
+                        <strong>Protección de Datos:</strong> Aunque se analizan datos privados en investigación, 
+                        la divulgación posterior está regulada por LOPDP.
+                    </li>
+                    <li>
+                        <strong>Testigo Pericial:</strong> El investigador forense debe comparecer como testigo 
+                        a explicar metodología, herramientas y hallazgos.
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p><strong>Portal Técnico Integral - Educación en Informática Forense</strong></p>
+        <p>Estructura de Computadores | Redes de Comunicaciones | Investigación de Ciberdelitos</p>
+        <p>Contenido desarrollado con rigor técnico y cumplimiento de normativa ecuatoriana.</p>
+        <p>&copy; 2026. Todos los derechos reservados. Diseño responsivo y accesible.</p>
+    </footer>
+
+    <script>
+        // Función para toggle de contenido
+        function toggleContent(elementId) {
+            const element = document.getElementById(elementId);
+            element.classList.toggle('active');
+        }
+
+        // Smooth scroll automático para navegación
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Efecto de carga progresiva
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    section.style.transition = 'all 0.5s ease';
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Información en consola para desarrolladores
+        console.log('%cPortal Técnico - Informática Forense', 'color: #1e3a8a; font-size: 16px; font-weight: bold;');
+        console.log('%cEstructura: HTML5 Semántico | CSS3 Responsivo | JavaScript Básico', 'color: #0f766e; font-size: 12px;');
+        console.log('%cListo para desplegar en GitHub Pages', 'color: #dc2626; font-size: 12px;');
+    </script>
+</body>
+</html>
